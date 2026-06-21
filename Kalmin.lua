@@ -2,13 +2,13 @@
 -- ||         CONFIGURATION                ||
 -- ==========================================
 local ValidKeys = {
-    "Kalmin-TestKey-123",
-    "Kalmin-Premium-456",
-    "test" 
+    "OwnerTestKey12#",
+    "KM-3432-5644-9775-3455",
+    "K25TGFSDFEFWEFWEF2", 
     -- You can add as many keys as you want here!
 }
 
-local GetKeyLink = "https://your-get-key-link.com"
+local GetKeyLink = "https://work.ink/2FOQ/2d2495f1-69a3-470a-a318-140715bc21ed"
 local DiscordLink = "https://discord.gg/DdjVT2aMwx"
 local LoadScript = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/API-AyGent/KalminScript/refs/heads/main/Kalmin.lua"))()'
 
@@ -65,9 +65,10 @@ MainCorner.Parent = MainFrame
 local MainStroke = Instance.new("UIStroke")
 MainStroke.Color = Color3.fromRGB(40, 40, 40)
 MainStroke.Thickness = 2
+MainStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 MainStroke.Parent = MainFrame
 
--- Top Bar (Drag Support)
+-- Top Bar 
 local TopBar = Instance.new("Frame")
 TopBar.Name = "TopBar"
 TopBar.Parent = MainFrame
@@ -124,6 +125,7 @@ InputCorner.Parent = KeyInput
 local InputStroke = Instance.new("UIStroke")
 InputStroke.Color = Color3.fromRGB(50, 50, 50)
 InputStroke.Thickness = 1
+InputStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 InputStroke.Parent = KeyInput
 
 -- Buttons Helper Function
@@ -147,6 +149,7 @@ local function CreateButton(name, text, pos, size, strokeColor, parent)
     local Stroke = Instance.new("UIStroke")
     Stroke.Color = strokeColor
     Stroke.Thickness = 1.5
+    Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
     Stroke.Parent = Btn
     
     -- Hover Animations
@@ -163,30 +166,6 @@ end
 local AuthBtn = CreateButton("AuthBtn", "Authorize Key", UDim2.new(0, 20, 0, 115), UDim2.new(0.5, -25, 0, 45), Color3.fromRGB(0, 255, 0), MainFrame)
 local GetKeyBtn = CreateButton("GetKeyBtn", "Get Key", UDim2.new(0.5, 5, 0, 115), UDim2.new(0.5, -25, 0, 45), Color3.fromRGB(0, 255, 255), MainFrame)
 local DiscordBtn = CreateButton("DiscordBtn", "Join Discord", UDim2.new(0, 20, 0, 180), UDim2.new(1, -40, 0, 45), Color3.fromRGB(0, 85, 255), MainFrame)
-
--- ==========================================
--- ||         DRAG LOGIC                   ||
--- ==========================================
-local dragging, dragInput, dragStart, startPos
-TopBar.InputBegan:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-        dragging = true
-        dragStart = input.Position
-        startPos = MainFrame.Position
-        input.Changed:Connect(function()
-            if input.UserInputState == Enum.UserInputState.End then dragging = false end
-        end)
-    end
-end)
-TopBar.InputChanged:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then dragInput = input end
-end)
-UserInputService.InputChanged:Connect(function(input)
-    if input == dragInput and dragging then
-        local delta = input.Position - dragStart
-        MainFrame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-    end
-end)
 
 -- ==========================================
 -- ||         BUTTON LOGIC                 ||
