@@ -2,7 +2,7 @@
 -- ||         CONFIGURATION                ||
 -- ==========================================
 local ValidKeys = {
-    "OwnerTestKey12#",
+    "OwnerTe",
     "KM-3432-5644-9775-3455",
     "K25TGFSDFEFWEFWEF2", 
     -- You can add as many keys as you want here!
